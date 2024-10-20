@@ -29,4 +29,12 @@ export class UserRepository {
 
     return user;
   }
+
+  async findById(id) {
+    const user = await this.#conn.user.findUnique({
+      where: { id },
+    });
+
+    return user;
+  }
 }
