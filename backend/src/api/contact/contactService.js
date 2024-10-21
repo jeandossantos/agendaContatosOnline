@@ -42,4 +42,19 @@ export class ContactService {
       address,
     });
   }
+
+  async listUserContacts(search, user_id) {
+    const contacts = await this.#contactRepository.listUserContacts({
+      user_id,
+      search,
+    });
+  }
+
+  async remove(id) {
+    const contactFound = await this.#contactRepository.findContactById(id);
+
+    if (!contactFound) throw new BadRequestException('Contato não encontrado.');
+
+    await this.#contactRepository.removeById(id);
+  }
 }
