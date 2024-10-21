@@ -1,4 +1,4 @@
-import bcrypt from 'bcrypt';
+import { encryptPassword } from '../../utils/encryptPassword.js';
 
 export class UserRepository {
   #conn;
@@ -17,7 +17,7 @@ export class UserRepository {
 
   async create({ name, email, password }) {
     const SALT_OR_ROUNDS = 12;
-    const hashedPassword = await bcrypt.hash(password, SALT_OR_ROUNDS);
+    const hashedPassword = encryptPassword(password, SALT_OR_ROUNDS);
 
     const user = await this.#conn.user.create({
       data: {
