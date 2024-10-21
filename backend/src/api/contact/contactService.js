@@ -10,6 +10,7 @@ export class ContactService {
 
   async create({
     user_id,
+    name,
     phone_number,
     phone_number_2,
     email,
@@ -17,6 +18,7 @@ export class ContactService {
     address,
   }) {
     existsOrError(user_id, 'Usuário não encontrado.', NotFoundException);
+    existsOrError(name, 'informe o nome do Contato.', NotFoundException);
     existsOrError(phone_number, 'Informe o telefone', BadRequestException);
     isEmailOrError(email, 'Informe um e-email válido.', BadRequestException);
     existsOrError(
@@ -35,6 +37,7 @@ export class ContactService {
 
     await this.#contactRepository.create({
       user_id,
+      name,
       phone_number,
       phone_number_2,
       email,
@@ -43,11 +46,15 @@ export class ContactService {
     });
   }
 
-  async listUserContacts(search, user_id) {
-    const contacts = await this.#contactRepository.listUserContacts({
+  async listUserContacts({ user_id, search, page, limit }) {
+    const contacts = await this.#contactRepository.find({
       user_id,
-      search,
+      name: search,
+      page,
+      limit,
     });
+
+    return contacts;
   }
 
   async remove(id) {
