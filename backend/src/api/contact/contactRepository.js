@@ -25,7 +25,7 @@ export class ContactRepository {
     });
   }
 
-  async findContactById(id) {
+  async findById(id) {
     return await this.#conn.contact.findUnique({
       where: { id },
     });
