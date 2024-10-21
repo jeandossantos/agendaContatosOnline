@@ -9,4 +9,8 @@ routes.post('/create', ensureAuthenticated, (req, res) => {
   return contactController.handleCreate(req, res);
 });
 
+routes.delete('/delete', ensureAuthenticated, (req, res) => {
+  return contactController.handleRemove(req, res);
+});
+
 export { routes as contactRoutes };
