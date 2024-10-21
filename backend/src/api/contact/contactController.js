@@ -24,10 +24,18 @@ export class ContactController {
   }
 
   async handleRemove(req, res) {
-    const { id } = req.body;
+    const { id } = req.params;
 
-    await this.#contactRepository.remove(id);
+    await this.#contactRepository.remove(parseInt(id));
 
     return res.status(HttpStatus.OK).send();
+  }
+
+  async handleShow(req, res) {
+    const { id } = req.params;
+
+    const contact = await this.#contactRepository.show(parseInt(id));
+
+    return res.json(contact); // Retorna o contato encontrado
   }
 }
