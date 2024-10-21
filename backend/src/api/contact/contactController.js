@@ -22,4 +22,12 @@ export class ContactController {
 
     return res.status(HttpStatus.CREATED).send();
   }
+
+  async handleRemove(req, res) {
+    const { id } = req.body;
+
+    await this.#contactRepository.remove(id);
+
+    return res.status(HttpStatus.OK).send();
+  }
 }
