@@ -29,7 +29,7 @@ export class ContactRepository {
 
   async findById(id) {
     return await this.#conn.contact.findUnique({
-      where: { id },
+      where: { id: Number(id) },
     });
   }
 
@@ -59,6 +59,7 @@ export class ContactRepository {
     // Contar o total de contatos correspondentes para fins de paginação
     const totalContacts = await this.#conn.contact.count({
       where: {
+        user_id,
         name: {
           startsWith: name,
         },
@@ -71,5 +72,24 @@ export class ContactRepository {
       totalPages: Math.ceil(totalContacts / limit),
       totalContacts,
     };
+  }
+
+  async update(
+    id,
+    { name, phone_number, phone_number_2, email, email_2, address }
+  ) {
+    const updatedContact = await this.#conn.contact.update({
+      where: { id: Number(id) },
+      data: {
+        name,
+        phone_number,
+        phone_number_2,
+        email,
+        email_2,
+        address,
+      },
+    });
+
+    return updatedContact;
   }
 }
