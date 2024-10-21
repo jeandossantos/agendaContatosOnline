@@ -72,4 +72,31 @@ export class ContactService {
 
     return contactFound; // Retorna o contato encontrado
   }
+
+  async update(
+    id,
+    { name, phone_number, phone_number_2, email, email_2, address }
+  ) {
+    const contactFound = await this.#contactRepository.findById(id);
+
+    if (!contactFound) throw new BadRequestException('Contato não encontrado.');
+
+    contactFound.name = name || contactFound.name;
+    contactFound.phone_number = phone_number || contactFound.phone_number;
+    contactFound.phone_number_2 = phone_number_2 || contactFound.phone_number_2;
+    contactFound.email = email || contactFound.email;
+    contactFound.email_2 = email_2 || contactFound.email_2;
+    contactFound.address = address || contactFound.address;
+
+    const updatedContact = await this.#contactRepository.update(id, {
+      name,
+      phone_number,
+      phone_number_2,
+      email,
+      email_2,
+      address,
+    });
+
+    return updatedContact;
+  }
 }
