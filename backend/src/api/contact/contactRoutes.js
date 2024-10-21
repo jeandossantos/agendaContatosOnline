@@ -17,4 +17,12 @@ routes.get('/show/:id', ensureAuthenticated, (req, res) => {
   return contactController.handleShow(req, res);
 });
 
+routes.get('/list', ensureAuthenticated, (req, res) => {
+  return contactController.handleFind(req, res);
+});
+
+routes.put('/update/:id', ensureAuthenticated, (req, res) => {
+  return contactController.handleUpdate(req, res);
+});
+
 export { routes as contactRoutes };
