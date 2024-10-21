@@ -51,10 +51,18 @@ export class ContactService {
   }
 
   async remove(id) {
-    const contactFound = await this.#contactRepository.findContactById(id);
+    const contactFound = await this.#contactRepository.findById(id);
 
     if (!contactFound) throw new BadRequestException('Contato não encontrado.');
 
     await this.#contactRepository.removeById(id);
+  }
+
+  async show(id) {
+    const contactFound = await this.#contactRepository.findById(id);
+
+    if (!contactFound) throw new BadRequestException('Contato não encontrado.');
+
+    return contactFound; // Retorna o contato encontrado
   }
 }
