@@ -24,4 +24,16 @@ export class ContactRepository {
       },
     });
   }
+
+  async findContactById(id) {
+    return await this.#conn.contact.findUnique({
+      where: { id },
+    });
+  }
+
+  async removeById(id) {
+    return await this.#conn.contact.delete({
+      where: { id },
+    });
+  }
 }
