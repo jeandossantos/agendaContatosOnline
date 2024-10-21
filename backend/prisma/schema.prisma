@@ -14,10 +14,24 @@ datasource db {
 }
 
 model User {
-  id       Int    @id @default(autoincrement())
+  id       Int       @id @default(autoincrement())
   name     String
-  email    String @unique
+  email    String    @unique
   password String
+  Contact  Contact[]
 
   @@map("users")
+}
+
+model Contact {
+  id             Int     @id @default(autoincrement())
+  phone_number   String
+  phone_number_2 String?
+  email          String
+  email_2        String?
+  address        String
+  user           User    @relation(fields: [user_id], references: [id])
+  user_id        Int
+
+  @@map("contacts")
 }
