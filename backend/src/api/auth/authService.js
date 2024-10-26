@@ -71,7 +71,6 @@ export class AuthService {
       },
       process.env.SECRET_KEY,
       {
-        expiresIn: '60m',
         subject: String(foundUser.id),
       }
     );
