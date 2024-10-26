@@ -76,47 +76,26 @@ export class AuthService {
       }
     );
 
-    const refreshToken = jwt.sign(
-      { id: foundUser.id },
-      process.env.SECRET_KEY,
-      {
-        expiresIn: '7d',
-      }
-    );
-
     return {
       accessToken,
-      refreshToken,
     };
   }
 
-  async refreshToken(refreshToken) {
-    if (!refreshToken) {
-      throw new BadRequestException('Refresh token não fornecido.');
-    }
-
+  async validateToken(token) {
     try {
-      const { id: userId } = jwt.verify(refreshToken, process.env.SECRET_KEY);
+      if (!token) {
+        return false;
+      }
 
-      const user = await this.#userRepository.findById(userId);
+      const { sub: userId } = jwt.verify(token, process.env.SECRET_KEY);
 
-      if (!user) throw new BadRequestException('Não encontrado.');
+      const user = await this.#userRepository.findById(parseInt(userId));
 
-      const accessToken = await jwt.sign(
-        {
-          username: user.name,
-          email: user.email,
-        },
-        process.env.SECRET_KEY,
-        {
-          expiresIn: '15m', // Novo access token válido por 15 minutos
-          subject: String(user.id), // Armazena o ID do usuário
-        }
-      );
+      if (!user) return false;
 
-      return accessToken;
+      return true;
     } catch (error) {
-      throw new BadRequestException('Invalid Token.');
+      return false;
     }
   }
 }
