@@ -6,21 +6,21 @@ interface Contact {
   email?: string;
   email_2?: string;
   address?: string;
+  createdAt: number;
+  updatedAt: number;
 }
 
 interface ContactModalProps {
-  contact: Contact; // Permitir que contact possa ser null
+  contact: Contact | null; // Permitir que contact possa ser null
 }
 
 export default function ShowContactModal({ contact }: ContactModalProps) {
-  // Retorna null se não houver contato selecionado
-
   return (
     <div
       className='modal fade'
-      id='showModal'
+      id='showContactModal'
       data-bs-backdrop='static'
-      data-bs-keyboard='false'
+      data-bs-keyboard='true'
       tabIndex={-1}
       aria-labelledby='staticBackdropLabel'
       aria-hidden='true'
@@ -53,35 +53,49 @@ export default function ShowContactModal({ contact }: ContactModalProps) {
                   <td>
                     <strong>Telefone:</strong>
                   </td>
-                  <td>{contact?.phone_number}</td>
+                  <td>{contact?.phone_number || ''}</td>
                 </tr>
-
                 <tr>
                   <td>
                     <strong>Telefone Alternativo:</strong>
                   </td>
                   <td>{contact?.phone_number_2 || 'N/A'}</td>
                 </tr>
-
                 <tr>
                   <td>
                     <strong>Email:</strong>
                   </td>
                   <td>{contact?.email || 'N/A'}</td>
                 </tr>
-
                 <tr>
                   <td>
                     <strong>Email Alternativo:</strong>
                   </td>
                   <td>{contact?.email_2 || 'N/A'}</td>
                 </tr>
-
                 <tr>
                   <td>
                     <strong>Endereço:</strong>
                   </td>
                   <td>{contact?.address || 'N/A'}</td>
+                </tr>
+                <tr>
+                  <td>
+                    <strong>Criado em:</strong>
+                  </td>
+                  <td>
+                    {new Date(contact?.createdAt || 'N/A').toLocaleDateString()}{' '}
+                    {new Date(contact?.createdAt || 'N/A').toLocaleTimeString()}
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <strong>Atualizado em:</strong>
+                  </td>
+                  <td>
+                    {new Date(contact?.updatedAt || 'N/A').toLocaleDateString()}{' '}
+                    {new Date(contact?.updatedAt || 'N/A').toLocaleTimeString()}
+                  </td>
                 </tr>
               </tbody>
             </table>

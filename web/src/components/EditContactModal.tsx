@@ -11,11 +11,13 @@ interface Contact {
   email?: string;
   email_2?: string;
   address?: string;
+  createdAt: number;
+  updatedAt: number;
 }
 
 interface ContactModalProps {
   contact: Contact; // O contato a ser editado
-  onUpdate: () => void; // Função para atualizar o contato
+
   handleListContacts: () => void;
   setContact: React.Dispatch<React.SetStateAction<Contact | null>>;
   setContacts: React.Dispatch<React.SetStateAction<Contact[]>>;
@@ -30,10 +32,10 @@ function EditContactModal({
     message: string;
     type: 'success' | 'error';
   } | null>(null);
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = e.target;
     setContact({ ...contact, [name]: value });
-  };
+  }
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();

@@ -18,6 +18,8 @@ interface Contact {
   email?: string;
   email_2?: string;
   address?: string;
+  createdAt: number;
+  updatedAt: number;
 }
 
 export default function Home() {
@@ -44,7 +46,13 @@ export default function Home() {
         },
       });
 
-      setContacts(data);
+      setContacts(
+        data.map((c: any) => ({
+          ...c,
+          createdAt: c.created_at, // Corrigido para c.created_at
+          updatedAt: c.updated_at, // Corrigido para c.updated_at
+        }))
+      );
     } catch (error) {
       setAlert({ message: 'Erro ao listar contatos.', type: 'danger' });
       console.log(error);
@@ -127,7 +135,7 @@ export default function Home() {
             </tr>
           </thead>
           <tbody>
-            {contacts.map((contact) => (
+            {contacts.map((contact: Contact) => (
               <tr key={contact.id}>
                 <td>{contact.name}</td>
                 <td>{contact.phone_number}</td>
@@ -135,11 +143,11 @@ export default function Home() {
                 <td>{contact.address || 'N/A'}</td>
                 <td className='d-flex gap-1'>
                   <button
+                    className='btn btn-secondary'
                     onClick={() => setSelectedContact(contact)}
                     type='button'
                     data-bs-toggle='modal'
-                    data-bs-target='#showModal'
-                    className='btn btn-secondary'
+                    data-bs-target='#showContactModal'
                   >
                     <FaEye />
                   </button>
@@ -168,7 +176,6 @@ export default function Home() {
 
         <EditContactModal
           contact={selectedContact!}
-          onUpdate={() => {}}
           handleListContacts={handleListContacts}
           setContact={setSelectedContact}
           setContacts={setContacts}
