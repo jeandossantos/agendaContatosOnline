@@ -1,9 +1,34 @@
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
 import { FaPowerOff } from 'react-icons/fa';
 import { TiContacts } from 'react-icons/ti';
 
+interface User {
+  name: string;
+  email: string;
+}
+
 function NavBar() {
+  const [user, setUser] = useState<User | null>(null);
+  useEffect(() => {
+    const token = localStorage.getItem('accessToken');
+    if (token) {
+      try {
+        // Decodifica o payload do token
+        const payload = JSON.parse(atob(token.split('.')[1]));
+
+        // Extrai o nome e email do payload
+        const { username: name, email } = payload;
+
+        // Atualiza o estado do usuário
+        setUser({ name, email });
+      } catch (error) {
+        console.error('Erro ao decodificar o token:', error);
+      }
+    }
+  }, []);
+
   const router = useRouter();
 
   const handleLogout = () => {
@@ -45,7 +70,15 @@ function NavBar() {
               </Link>
             </li>
           </ul>
-          <span className='navbar-text' title='Log out'>
+          <span
+            className='navbar-text d-flex justify-content-center gap-2 align-items-center'
+            title='Log out'
+          >
+            <strong>
+              <span className='text-warning'>Logado: </span>
+
+              {user?.name}
+            </strong>
             <button className='btn btn-danger' onClick={handleLogout}>
               <FaPowerOff size={20} />
             </button>

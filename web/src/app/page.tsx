@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react';
 import { FaEdit, FaEye, FaPlus, FaSearch, FaTrash } from 'react-icons/fa';
 import EditContactModal from '@/components/EditContactModal';
 import FormContactModal from '@/components/FormContactModal';
+import Footer from '@/components/Footer';
 
 interface Contact {
   id: number;
@@ -175,6 +176,7 @@ export default function Home() {
 
         <FormContactModal handleListContacts={handleListContacts} />
       </div>
+      <Footer />
     </>
   );
 }

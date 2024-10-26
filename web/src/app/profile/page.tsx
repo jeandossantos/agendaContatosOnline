@@ -1,5 +1,6 @@
 'use client';
 
+import Footer from '@/components/Footer';
 import NavBar from '@/components/NavBar';
 import { useEffect, useState } from 'react';
 import { FaUserCircle } from 'react-icons/fa';
@@ -65,6 +66,8 @@ export default function Profile() {
           </form>
         )}
       </div>
+
+      <Footer />
     </>
   );
 }
