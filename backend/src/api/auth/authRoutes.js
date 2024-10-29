@@ -12,8 +12,8 @@ routes.post('/login', (req, res) => {
   return authController.handleLogin(req, res);
 });
 
-routes.post('/validateToken', (req, res) => {
-  return authController.handleValidateToken(req, res);
-});
+// routes.post('/validateToken', (req, res) => {
+//   return authController.handleValidateToken(req, res);
+// });
 
 export { routes as authRoutes };

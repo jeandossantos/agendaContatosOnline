@@ -15,7 +15,7 @@ function Protected({ children }: { children: React.ReactNode }) {
         router.push('/login');
         return;
       }
-      console.log(usePathname());
+
       try {
         const {
           data: { isValid },
