@@ -28,12 +28,12 @@ export class AuthController {
     return res.status(HttpStatus.OK).json(payload);
   }
 
-  // async handleValidateToken(req, res) {
-  //   const { token } = req.body;
+  async handleValidateToken(req, res) {
+    const { token } = req.body;
 
-  //   const isValid = await this.#authService.validateToken(token);
-  //   console.log(isValid);
+    const isValid = await this.#authService.validateToken(token);
+    console.log(isValid);
 
-  //   return res.send(isValid);
-  // }
+    return res.send(isValid);
+  }
 }

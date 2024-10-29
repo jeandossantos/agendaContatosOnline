@@ -80,21 +80,21 @@ export class AuthService {
     };
   }
 
-  // async validateToken(token) {
-  //   try {
-  //     if (!token) {
-  //       return false;
-  //     }
+  async validateToken(token) {
+    try {
+      if (!token) {
+        return false;
+      }
 
-  //     const { sub: userId } = jwt.verify(token, process.env.SECRET_KEY);
+      const { sub: userId } = jwt.verify(token, process.env.SECRET_KEY);
 
-  //     const user = await this.#userRepository.findById(parseInt(userId));
+      const user = await this.#userRepository.findById(parseInt(userId));
 
-  //     if (!user) return false;
+      if (!user) return false;
 
-  //     return true;
-  //   } catch (error) {
-  //     return false;
-  //   }
-  // }
+      return true;
+    } catch (error) {
+      return false;
+    }
+  }
 }
