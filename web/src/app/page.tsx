@@ -89,7 +89,7 @@ export default function Home() {
       <div className='content mt-5 mx-3'>
         <h1 className='text-center'>Meus Contatos</h1>
 
-        <div className='d-flex justify-content-between my-3'>
+        <div className='d-flex justify-content-between my-3 '>
           <div className='input-group' style={{ width: 400 }}>
             <span className='input-group-text' id='basic-addon1'>
               <FaSearch />
