@@ -95,7 +95,7 @@ npm run seed_user
 - Acesse: Abra seu navegador e vá para http://localhost:3000.
 - Interaja: Utilize a interface da aplicação para adicionar, editar e excluir contatos.
 
-- OBS: se você executou o a seed, poderá realizar log in com o email: usermock@oi.com e senha: 123456
+- OBS: se você executou o a seed, poderá realizar log in com o email: usermock&#64;oi.com e senha: 123456
 
 ## Autor
 Jean Francisco dos Santos
