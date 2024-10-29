@@ -139,7 +139,7 @@ export default function Register() {
           </div>
           <div className='d-flex justify-content-center align-items-center flex-column mt-1'>
             <p className='text-center mb-0'>Ou</p>
-            <Link href={'/login'}>Crie uma conta</Link>
+            <Link href={'/login'}>Já tenho uma conta</Link>
           </div>
         </form>
       </div>
