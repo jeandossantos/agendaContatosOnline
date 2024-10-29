@@ -1,38 +1,36 @@
 'use client';
 import { baseUrl } from '@/config/AxiosConfig';
 import axios from 'axios';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 
 function Protected({ children }: { children: React.ReactNode }) {
   const router = useRouter();
-
+  const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     const checkAuth = async () => {
-      const token = localStorage.getItem('accessToken');
-
-      if (!token) {
-        router.push('/login');
-        return;
-      }
-
       try {
-        const {
-          data: { isValid },
-        } = await axios.post(`${baseUrl}/auth/validateToken`, { token });
+        const token = localStorage.getItem('accessToken');
+
+        if (!token) {
+          router.push('/login');
+          return;
+        }
+
+        const request = await axios.post(`${baseUrl}/auth/validateToken`, {
+          token,
+        });
+
+        const isValid = request.data;
 
         if (!isValid && usePathname() != '/register') {
           localStorage.removeItem('accessToken');
           router.push('/login');
         }
 
-        // if (isValid) {
-        //   if (usePathname() == '/register' || usePathname() == '/login') {
-        //     router.push('/');
-        //   }
-        // }
+        setIsLoading(false);
       } catch (error) {
-        console.error('Erro ao validar o token:', error);
+        console.log('Erro ao validar o token:', error);
         localStorage.removeItem('accessToken');
         router.push('/login');
       }
@@ -41,9 +39,19 @@ function Protected({ children }: { children: React.ReactNode }) {
     checkAuth();
   }, [router]);
 
-  // Enquanto verifica a autenticação, você pode exibir um carregando ou retornar nulo
-  if (typeof window === 'undefined') {
-    return null;
+  if (isLoading) {
+    return (
+      <div className='d-flex justify-content-center align-items-center vh-100'>
+        <div
+          className='spinner-border text-primary spinner-border-lg'
+          role='status'
+        >
+          {' '}
+           <span className='visually-hidden'>Loading...</span>
+        </div>{' '}
+         
+      </div>
+    ); // Show loading indicator
   }
 
   return <>{children}</>;
