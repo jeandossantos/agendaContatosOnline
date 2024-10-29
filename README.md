@@ -14,16 +14,26 @@ O sistema **Agenda de Contatos Online** visa fornecer uma plataforma acessível 
 
 ## Modelagem do Banco de Dados
 
-![relacionamento.jpg](Agenda%20de%20Contatos%20Online%20122895fd66ac804ea5d5c00c4bcf392c/relacionamento.jpg)
+![relacionamento.jpg](https://github.com/jeandossantos/assets/blob/master/AgendaContatos/relacionamento.jpg)
 
 ### informações de esquema
 
-![tabela users.png](Agenda%20de%20Contatos%20Online%20122895fd66ac804ea5d5c00c4bcf392c/tabela_users.png)
+![tabela users.png](https://github.com/jeandossantos/assets/blob/master/AgendaContatos/tabela%20users.png)
 
-![tabela contacts.png](Agenda%20de%20Contatos%20Online%20122895fd66ac804ea5d5c00c4bcf392c/tabela_contacts.png)
+![tabela contacts.png](https://github.com/jeandossantos/assets/blob/master/AgendaContatos/tabela%20contacts.png)
 
-## **Interface de Usuário**
+## **Interface do sistema**
+![login.jpg](https://github.com/jeandossantos/assets/blob/master/AgendaContatos/login.png)
 
+![register.jpg](https://github.com/jeandossantos/assets/blob/master/AgendaContatos/register.png)
+
+![home.jpg](https://github.com/jeandossantos/assets/blob/master/AgendaContatos/home.png)
+
+![profile.jpg](https://github.com/jeandossantos/assets/blob/master/AgendaContatos/show%20contact.png)
+
+![profile.jpg](https://github.com/jeandossantos/assets/blob/master/AgendaContatos/edit%20contact.png)
+
+![edit.jpg](https://github.com/jeandossantos/assets/blob/master/AgendaContatos/profile.png)
 ## Tecnologias
 
 - **Node.js**
@@ -35,3 +45,5 @@ O sistema **Agenda de Contatos Online** visa fornecer uma plataforma acessível 
 - **Next.js**
 
 ###
+
+
