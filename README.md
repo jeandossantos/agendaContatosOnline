@@ -46,4 +46,56 @@ O sistema **Agenda de Contatos Online** visa fornecer uma plataforma acessível 
 
 ###
 
+## Como executar o projeto
 
+### Pré-requisitos
+
+- Node.js 20.x.x
+- npm 10.x.x
+
+### Back end
+
+```bash
+# clonar repositório
+git clone <https://github.com/jeandossantos/agendaContatosOnline.git>
+
+# entrar na pasta do projeto back end
+cd backend
+
+# instalar dependências
+npm i
+
+# roda migrations
+npx prisma migrate:dev
+
+# executar o projeto
+npm run dev
+
+```
+
+### Frontend
+```bash
+# entrar na pasta do projeto frontend web
+cd web
+
+# instalar dependências
+npm install
+
+# executar o projeto
+npm run dev
+
+```
+
+### Popular Banco de dados com dados(Opcional)
+```bash
+npm run seed_user
+```
+
+## Utilizando a Aplicação
+- Acesse: Abra seu navegador e vá para http://localhost:3000.
+- Interaja: Utilize a interface da aplicação para adicionar, editar e excluir contatos.
+
+- OBS: se você executou o a seed, poderá realizar log in com o email: usermock@oi.com e senha: 123456
+
+## Autor
+Jean Francisco dos Santos
