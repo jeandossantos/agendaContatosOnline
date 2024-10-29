@@ -8,12 +8,15 @@ function Protected({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
+    console.log('use effect');
     const checkAuth = async () => {
       try {
         const token = localStorage.getItem('accessToken');
+        console.log('Token', token);
 
         if (!token) {
           router.push('/login');
+          setIsLoading(false);
           return;
         }
 
@@ -33,6 +36,9 @@ function Protected({ children }: { children: React.ReactNode }) {
         console.log('Erro ao validar o token:', error);
         localStorage.removeItem('accessToken');
         router.push('/login');
+        setIsLoading(false);
+      } finally {
+        setIsLoading(false);
       }
     };
 
