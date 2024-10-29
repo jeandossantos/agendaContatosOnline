@@ -10,7 +10,7 @@ generator client {
 
 datasource db {
   provider = "sqlite"
-  url      = "file:./angedaOnline.db"
+  url      = "file:./agendaOnline.db"
 }
 
 model User {
