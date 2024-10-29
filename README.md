@@ -66,7 +66,7 @@ cd backend
 npm i
 
 # roda migrations
-npx prisma migrate:dev
+npx prisma migrate dev
 
 # executar o projeto
 npm run dev
