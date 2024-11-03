@@ -3,3 +3,4 @@ node_modules
 .vscode
 prisma/angedaOnline.db
 agendaOnline.db
+agendaContatosOnline.zip
