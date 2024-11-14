@@ -20,14 +20,10 @@ export class ContactService {
     existsOrError(user_id, 'Usuário não encontrado.', NotFoundException);
     existsOrError(name, 'informe o nome do Contato.', NotFoundException);
     existsOrError(phone_number, 'Informe o telefone', BadRequestException);
+
     if (email) {
       isEmailOrError(email, 'Informe um e-email válido.', BadRequestException);
     }
-    existsOrError(
-      address,
-      'Informe o endereço do contato.',
-      BadRequestException
-    );
 
     if (email_2) {
       isEmailOrError(
